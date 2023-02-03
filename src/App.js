@@ -68,7 +68,7 @@ function App() {
       date: dateInput,
       reminder: checkInput
     }])
-    // hide form
+    // hide
     toggleForm();
   }
 
@@ -83,9 +83,12 @@ function App() {
 
   return (
     <div className="container">
-      <Header onAdd={toggleForm} />
+      <Header
+        onAdd={toggleForm}
+        formState={form}
+      />
       {/* render form after click on Add */}
-      {form ? <AddTaskForm onSave={addTask}/> : <></>}
+      {form && <AddTaskForm onSave={addTask}/>}
       {/* render taskList or message if empty */}
       {tasks.length > 0 ? taskListComp : <h3>You have no tasks!</h3>}
     </div>

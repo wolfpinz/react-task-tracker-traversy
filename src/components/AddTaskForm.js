@@ -15,16 +15,11 @@ const AddTaskForm = ({ onSave }) => {
   const handleCheck = () => {
     setCheckInput(!checkInput)
   }
-  // const saveTask = (e) => {
-  //   e.preventDefault
-
-  // }
 
   return (
     <form className='add-form'
       onSubmit={e => {
         e.preventDefault()
-        console.log(taskInput, dateInput, checkInput)
         onSave(taskInput, dateInput, checkInput)
       }}
     >
