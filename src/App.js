@@ -32,6 +32,8 @@ const data = [
   // onClick, handleClick(), pass as prop to Task
 // optional message if no task
 // toggle reminder
+  // set class reminder if true
+  // onDoubleClick toggle reminder
 // task form, form input state
 
 function App() {
@@ -42,11 +44,23 @@ function App() {
     console.log(id)
     setTasks(tasks.filter(task => task.id !== id))
   }
+  // toggle reminder
+  const toggleReminder = (taskID) => {
+    setTasks(tasks.map((task) => {
+      if (task.id === taskID) {
+        return {...task, reminder: !task.reminder}
+      } else {
+        return task
+      }
+    }))
+  }
 
+  // return values
   const taskListComp = (
     <TaskList
       tasks={tasks}
       onDelete={deleteTask}
+      onToggle={toggleReminder}
     />
   )
   const message = <h3>You have no tasks!</h3>

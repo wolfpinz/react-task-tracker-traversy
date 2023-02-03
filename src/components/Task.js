@@ -1,9 +1,12 @@
 // import PropTypes from 'prop-types'
 import { MdDeleteOutline } from "react-icons/md";
 
-const Task = ({ task, onDelete }) => {
+const Task = ({ task, onDelete, onToggle }) => {
   return (
-      <li className="task">
+      <li
+        className={`task ${task.reminder ? "reminder" : ""}`}
+        onDoubleClick={() => onToggle(task.id, task.reminder)}
+        >
         <div>
           <h3>{task.title}</h3>
           <p>{task.date}</p>
