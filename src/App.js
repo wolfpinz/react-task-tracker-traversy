@@ -2,6 +2,7 @@ import './App.css';
 import { useState } from 'react'
 import Header from './components/Header.js';
 import TaskList from './components/TaskList.js';
+import AddTaskForm from './components/AddTaskForm.js';
 
 const data = [
   {
@@ -28,16 +29,14 @@ const data = [
 ]
 
 // next:
-// delete task (remove from array)
-  // onClick, handleClick(), pass as prop to Task
-// optional message if no task
-// toggle reminder
-  // set class reminder if true
-  // onDoubleClick toggle reminder
 // task form, form input state
+  // on button click
+  // render form below header
+      // TODO: 2.
 
 function App() {
   const [tasks, setTasks] = useState(data) // tasks = global state
+  const [form, setForm] = useState(false)
 
   // delete task
   const deleteTask = (id) => {
@@ -54,6 +53,24 @@ function App() {
       }
     }))
   }
+  // render/toggle form
+  const toggleForm = () => {
+    setForm(!form)
+  }
+  const addTask = (taskInput, dateInput, checkInput) => {
+    // set next ID
+    const lastTask = tasks.at(-1)
+    const nextID = lastTask.id + 1
+    // set Task
+    setTasks([...tasks, {
+      id: nextID,
+      title: taskInput,
+      date: dateInput,
+      reminder: checkInput
+    }])
+    // hide form
+    toggleForm();
+  }
 
   // return values
   const taskListComp = (
@@ -63,13 +80,14 @@ function App() {
       onToggle={toggleReminder}
     />
   )
-  const message = <h3>You have no tasks!</h3>
 
   return (
     <div className="container">
-      <Header />
+      <Header onAdd={toggleForm} />
+      {/* render form after click on Add */}
+      {form ? <AddTaskForm onSave={addTask}/> : <></>}
       {/* render taskList or message if empty */}
-      {tasks.length > 0 ? taskListComp : message}
+      {tasks.length > 0 ? taskListComp : <h3>You have no tasks!</h3>}
     </div>
   );
 }

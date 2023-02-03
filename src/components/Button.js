@@ -1,8 +1,11 @@
 // import PropTypes from 'prop-types'
 
-const Button = props => {
+const Button =  ({ onAdd })  => {
   return (
-    <div className='btn'>
+    <div
+      className='btn'
+      onClick={onAdd}
+      >
       Add
     </div>
   )

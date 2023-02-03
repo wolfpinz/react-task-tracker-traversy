@@ -1,11 +1,11 @@
 // import PropTypes from 'prop-types'
 import Button from './Button'
 
-const Header = props => {
+const Header = ({ onAdd }) => {
   return (
     <div className='header'>
       <h1>Task Tracker</h1>
-      <Button />
+      <Button onAdd={onAdd} />
     </div>
   )
 }
