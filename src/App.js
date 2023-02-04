@@ -28,12 +28,6 @@ const data = [
   }
 ]
 
-// next:
-// task form, form input state
-  // on button click
-  // render form below header
-      // TODO: 2.
-
 function App() {
   const [tasks, setTasks] = useState(data) // tasks = global state
   const [form, setForm] = useState(false)
